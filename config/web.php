@@ -4,7 +4,16 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+        ],
+    ],
     'id' => 'basic',
+    'modules' => [
+        'admin' => ['class' => 'mdm\admin\Module'],
+    ],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -12,9 +21,14 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => ['class' => 'yii\rbac\DbManager'],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'B35f8nsJwgfP6P0UlO6fGezGI0mcnfqe',
+        ],
+        'user' => [
+            'identityClass' => 'mdm\admin\models\User',
+            'loginUrl' => ['admin/user/login'],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

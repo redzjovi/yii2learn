@@ -232,7 +232,14 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 
 You can see code coverage output under the `tests/_output` directory.
 
+### Commands
+------------
+- Run command, php yii migrate --migrationPath=@mdm/admin/migrations
+- Run command, php yii migrate --migrationPath=@yii/rbac/migrations
+- Run command, php yii migrate/up
+
 ### Installation
 ----------------
 - Run command, composer install
 - Copy config/db.example.php to config/db.php and update all setting
+- Import yii2learn.sql to your database
