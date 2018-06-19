@@ -232,6 +232,7 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 
 You can see code coverage output under the `tests/_output` directory.
 
-Installation
-------------
+### Installation
+----------------
 - Run command, composer install
+- Copy config/db.example.php to config/db.php and update all setting
