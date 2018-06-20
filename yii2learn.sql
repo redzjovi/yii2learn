@@ -15,6 +15,8 @@ CREATE TABLE `auth_assignment` (
   CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
+('admin',	'1',	1529473211);
 
 DROP TABLE IF EXISTS `auth_item`;
 CREATE TABLE `auth_item` (
@@ -238,12 +240,14 @@ CREATE TABLE `migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
-('m000000_000000_base',	1529399518),
-('m140506_102106_rbac_init',	1529399530),
-('m140602_111327_create_menu_table',	1529399520),
-('m160312_050000_create_user',	1529399520),
-('m170907_052038_rbac_add_index_on_auth_assignment_user_id',	1529399530),
-('m180619_071221_UserSeeder',	1529400040);
+('m000000_000000_base',	1529472390),
+('m140506_102106_rbac_init',	1529472400),
+('m140602_111327_create_menu_table',	1529472392),
+('m160312_050000_create_user',	1529472392),
+('m170907_052038_rbac_add_index_on_auth_assignment_user_id',	1529472400),
+('m180619_074157_RouteSeeder',	1529473209),
+('m180619_084052_RoleSeeder',	1529473209),
+('m180620_053128_UserSeeder',	1529473211);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (

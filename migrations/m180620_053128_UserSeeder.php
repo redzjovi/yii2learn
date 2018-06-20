@@ -4,10 +4,17 @@ use app\models\User;
 use yii\db\Migration;
 
 /**
- * Class m180619_071221_UserSeeder
+ * Class m180620_053128_UserSeeder
  */
-class m180619_071221_UserSeeder extends Migration
+class m180620_053128_UserSeeder extends Migration
 {
+    protected $auth;
+
+    public function __construct()
+    {
+        $this->auth = \Yii::$app->authManager;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -18,6 +25,7 @@ class m180619_071221_UserSeeder extends Migration
                 'username' => 'admin',
                 'email' => 'admin@mailinator.com',
                 'password' => 'admin',
+                'role' => \app\models\Role::ADMIN,
             ],
         ];
 
@@ -28,6 +36,10 @@ class m180619_071221_UserSeeder extends Migration
             $model->setAttributes($user);
             $model->setPassword($user['password']);
             $model->save();
+
+            $role = $this->auth->getRole($user['role']);
+            $userId = $model->id;
+            $this->auth->assign($role, $userId);
         }
     }
 
@@ -49,7 +61,7 @@ class m180619_071221_UserSeeder extends Migration
 
     public function down()
     {
-        echo "m180619_071221_UserSeeder cannot be reverted.\n";
+        echo "m180620_053128_UserSeeder cannot be reverted.\n";
 
         return false;
     }
