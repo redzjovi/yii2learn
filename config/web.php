@@ -26,6 +26,11 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'B35f8nsJwgfP6P0UlO6fGezGI0mcnfqe',
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'rules' => [],
+            'showScriptName' => false,
+        ],
         'user' => [
             'enableAutoLogin' => true,
             'identityClass' => 'app\models\User',
@@ -54,14 +59,6 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
     ],
     'params' => $params,
 ];
