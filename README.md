@@ -232,6 +232,10 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 
 You can see code coverage output under the `tests/_output` directory.
 
+### Packages
+------------
+- [yii2-migrik](https://github.com/Insolita/yii2-migrik)
+
 ### Installation
 ----------------
 - Run command, composer install
