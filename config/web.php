@@ -27,15 +27,12 @@ $config = [
             'cookieValidationKey' => 'B35f8nsJwgfP6P0UlO6fGezGI0mcnfqe',
         ],
         'user' => [
-            'identityClass' => 'mdm\admin\models\User',
+            'enableAutoLogin' => true,
+            'identityClass' => 'app\models\User',
             'loginUrl' => ['admin/user/login'],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

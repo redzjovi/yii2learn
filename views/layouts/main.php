@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+use mdm\admin\components\MenuHelper;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -34,6 +35,10 @@ AppAsset::register($this);
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, null, true),
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
