@@ -105,6 +105,13 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('/gii/default/index',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
 ('/gii/default/preview',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
 ('/gii/default/view',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
+('/post/*',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
+('/post/backend/post/*',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
+('/post/backend/post/create',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
+('/post/backend/post/delete',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
+('/post/backend/post/index',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
+('/post/backend/post/update',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
+('/post/backend/post/view',	2,	NULL,	NULL,	NULL,	1529752617,	1529752617),
 ('/site/*',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
 ('/site/about',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
 ('/site/captcha',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
@@ -113,7 +120,8 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('/site/index',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
 ('/site/login',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
 ('/site/logout',	2,	NULL,	NULL,	NULL,	1529399738,	1529399738),
-('admin',	1,	NULL,	NULL,	NULL,	1529399746,	1529399746);
+('admin',	1,	NULL,	NULL,	NULL,	1529399746,	1529399746),
+('Backend',	2,	NULL,	NULL,	NULL,	1529474265,	1529474265);
 
 DROP TABLE IF EXISTS `auth_item_child`;
 CREATE TABLE `auth_item_child` (
@@ -197,6 +205,13 @@ INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
 ('admin',	'/gii/default/index'),
 ('admin',	'/gii/default/preview'),
 ('admin',	'/gii/default/view'),
+('admin',	'/post/*'),
+('admin',	'/post/backend/post/*'),
+('admin',	'/post/backend/post/create'),
+('admin',	'/post/backend/post/delete'),
+('admin',	'/post/backend/post/index'),
+('admin',	'/post/backend/post/update'),
+('admin',	'/post/backend/post/view'),
 ('admin',	'/site/*'),
 ('admin',	'/site/about'),
 ('admin',	'/site/captcha'),
@@ -229,6 +244,15 @@ CREATE TABLE `menu` (
   CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `menu` (`id`, `name`, `parent`, `route`, `order`, `data`) VALUES
+(72,	'Backend',	NULL,	'/admin/default/index',	NULL,	NULL),
+(73,	'Admin',	72,	'/admin/default/index',	NULL,	NULL),
+(74,	'Route',	73,	'/admin/route/index',	1,	NULL),
+(75,	'Permission',	73,	'/admin/permission/index',	2,	NULL),
+(76,	'Menu',	73,	'/admin/menu/index',	3,	NULL),
+(77,	'Role',	73,	'/admin/role/index',	4,	NULL),
+(78,	'Assignment',	73,	'/admin/assignment/index',	5,	NULL),
+(79,	'User',	73,	'/admin/user/index',	6,	NULL);
 
 SET NAMES utf8mb4;
 
@@ -247,7 +271,19 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m170907_052038_rbac_add_index_on_auth_assignment_user_id',	1529472400),
 ('m180619_074157_RouteSeeder',	1529473209),
 ('m180619_084052_RoleSeeder',	1529473209),
-('m180620_053128_UserSeeder',	1529473211);
+('m180620_053128_UserSeeder',	1529473211),
+('m180623_011837_MenuSeeder',	1529742912);
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -266,4 +302,4 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
 (1,	'admin',	'eCsgqTxkda5DDomw_MlS3BuUFNawLMd2',	'$2y$13$6bvZOhWn868swPN8ypSpQ.yxAqjPzzVdPfMMRucUbntzpMpsI7x6a',	NULL,	'admin@mailinator.com',	10,	1529400040,	1529400040);
 
--- 2018-06-19 09:20:42
+-- 2018-06-23 11:20:38

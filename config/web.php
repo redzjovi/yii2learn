@@ -13,6 +13,7 @@ $config = [
     'id' => 'basic',
     'modules' => [
         'admin' => ['class' => 'mdm\admin\Module'],
+        'post' => ['class' => 'app\modules\post\Post'],
     ],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
