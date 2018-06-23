@@ -3,6 +3,7 @@
 namespace app\modules\post\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "{{%post}}".
@@ -46,6 +47,16 @@ class Post extends \yii\db\ActiveRecord
             'slug' => Yii::t('app', 'Slug'),
             'excerpt' => Yii::t('app', 'Excerpt'),
             'content' => Yii::t('app', 'Content'),
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+            ],
         ];
     }
 
