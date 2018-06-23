@@ -234,7 +234,8 @@ You can see code coverage output under the `tests/_output` directory.
 
 ### Packages
 ------------
-- [yii2-migrik](https://github.com/Insolita/yii2-migrik)
+- [insolita/yii2-migration-generator](https://github.com/Insolita/yii2-migrik)
+- [vova07/yii2-imperavi-widget](https://github.com/vova07/yii2-imperavi-widget)
 
 ### Installation
 ----------------

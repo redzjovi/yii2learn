@@ -16,7 +16,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'excerpt')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content')->widget(\vova07\imperavi\Widget::className(), [
+        'settings' => [
+            'plugins' => [
+                'filemanager',
+                'fontcolor',
+                // 'fontfamily',
+                // 'fontsize',
+                'fullscreen',
+                'imagemanager',
+                'table',
+                'video',
+                'widget',
+            ],
+        ],
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
