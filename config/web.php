@@ -7,6 +7,7 @@ $config = [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
+            'posts/*',
             'site/*',
         ],
     ],
@@ -29,7 +30,9 @@ $config = [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'rules' => [],
+            'rules' => [
+                'posts/view/<id>/<slug>' => 'posts/view',
+            ],
             'showScriptName' => false,
         ],
         'user' => [

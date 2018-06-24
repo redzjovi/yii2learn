@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Menu;
 use app\widgets\Alert;
 use mdm\admin\components\MenuHelper;
 use yii\helpers\Html;
@@ -36,9 +37,20 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+
+    if ($menu = Menu::findOneByName('Backend Menu'))
+    {
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, $menu->id, null),
+        ]);
+    }
+
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, null, true),
+        'options' => ['class' => 'navbar-nav'],
+        'items' => [
+            ['label' => 'Posts', 'url' => ['/posts']],
+        ],
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

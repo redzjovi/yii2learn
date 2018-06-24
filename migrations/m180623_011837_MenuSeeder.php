@@ -15,44 +15,63 @@ class m180623_011837_MenuSeeder extends Migration
     {
         $menus = [
             [
-                'name' => 'Backend',
-                'route' => '/admin/default/index',
+                'name' => 'Backend Menu',
+                'route' => null,
                 'order' => null,
                 'children' => [
                     [
-                        'name' => 'Admin',
+                        'name' => 'Backend',
                         'route' => '/admin/default/index',
                         'order' => null,
                         'children' => [
                             [
-                                'name' => 'Route',
-                                'route' => '/admin/route/index',
+                                'name' => 'Admin',
+                                'route' => '/admin/default/index',
                                 'order' => 1,
+                                'children' => [
+                                    [
+                                        'name' => 'Route',
+                                        'route' => '/admin/route/index',
+                                        'order' => 1,
+                                    ],
+                                    [
+                                        'name' => 'Permission',
+                                        'route' => '/admin/permission/index',
+                                        'order' => 2,
+                                    ],
+                                    [
+                                        'name' => 'Menu',
+                                        'route' => '/admin/menu/index',
+                                        'order' => 3,
+                                    ],
+                                    [
+                                        'name' => 'Role',
+                                        'route' => '/admin/role/index',
+                                        'order' => 4,
+                                    ],
+                                    [
+                                        'name' => 'Assignment',
+                                        'route' => '/admin/assignment/index',
+                                        'order' => 5,
+                                    ],
+                                    [
+                                        'name' => 'User',
+                                        'route' => '/admin/user/index',
+                                        'order' => 6,
+                                    ],
+                                ],
                             ],
                             [
-                                'name' => 'Permission',
-                                'route' => '/admin/permission/index',
+                                'name' => 'Modules',
+                                'route' => null,
                                 'order' => 2,
-                            ],
-                            [
-                                'name' => 'Menu',
-                                'route' => '/admin/menu/index',
-                                'order' => 3,
-                            ],
-                            [
-                                'name' => 'Role',
-                                'route' => '/admin/role/index',
-                                'order' => 4,
-                            ],
-                            [
-                                'name' => 'Assignment',
-                                'route' => '/admin/assignment/index',
-                                'order' => 5,
-                            ],
-                            [
-                                'name' => 'User',
-                                'route' => '/admin/user/index',
-                                'order' => 6,
+                                'children' => [
+                                    [
+                                        'name' => 'Post',
+                                        'route' => '/post/backend/post/index',
+                                        'order' => 1,
+                                    ],
+                                ],
                             ],
                         ],
                     ],
@@ -87,8 +106,8 @@ class m180623_011837_MenuSeeder extends Migration
     }
     */
 
-   public function menuInsert($menus, $parent = null)
-   {
+    public function menuInsert($menus, $parent = null)
+    {
        if (is_array($menus))
        {
            foreach ($menus as $menu)
@@ -104,5 +123,5 @@ class m180623_011837_MenuSeeder extends Migration
                }
            }
        }
-   }
+    }
 }
